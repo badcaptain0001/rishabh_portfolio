@@ -44,11 +44,11 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${signature.variable} ${playwrite.variable} antialiased`}
-      >
-        {children}
-      </body>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${signature.variable} ${playwrite.variable} antialiased`}
+        >
+          {children}
+        </body>
     </html>
   );
 }
