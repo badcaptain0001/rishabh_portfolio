@@ -19,7 +19,7 @@ const signature = localFont({
   weight: "400",
 });
 const playwrite = localFont({
-  src: "./fonts/playwrite.ttf",
+  src: "./fonts/Playwrite.ttf",
   variable: "--font-playwrite",
   weight: "400",
 });
