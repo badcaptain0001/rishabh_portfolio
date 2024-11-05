@@ -49,37 +49,41 @@ const itemVariants = (col: number, row: number) => ({
   }
 });
 
+const isDesktop = () => window.matchMedia("(min-width: 1024px)").matches;
+
 function Main() {
   useEffect(() => {
-    const container = document.querySelector(".swapy-container")!;
-    const swapy = createSwapy(container, {
-      swapMode: "hover",
-      autoScrollOnDrag: true,
-    });
+    if (isDesktop()) {
+      const container = document.querySelector(".swapy-container")!;
+      const swapy = createSwapy(container, {
+        swapMode: "hover",
+        autoScrollOnDrag: true,
+      });
 
-    swapy.onSwapStart(() => {
-      console.log("Swap started");
-    });
+      swapy.onSwapStart(() => {
+        console.log("Swap started");
+      });
 
-    swapy.onSwap(({ data }) => {
-      const fromItem = data.array[0];
-      const toItem = data.array[1];
-      const fromGroup = fromItem.itemId?.split("-")[0];
-      const toGroup = toItem.itemId?.split("-")[0];
-      if (fromGroup !== toGroup) {
-        console.log("Swap prevented due to group mismatch");
-        return;
-      }
-      localStorage.setItem("slotItem", JSON.stringify(data.object));
-    });
+      swapy.onSwap(({ data }) => {
+        const fromItem = data.array[0];
+        const toItem = data.array[1];
+        const fromGroup = fromItem.itemId?.split("-")[0];
+        const toGroup = toItem.itemId?.split("-")[0];
+        if (fromGroup !== toGroup) {
+          console.log("Swap prevented due to group mismatch");
+          return;
+        }
+        localStorage.setItem("slotItem", JSON.stringify(data.object));
+      });
 
-    swapy.onSwapEnd(({ hasChanged }) => {
-      console.log("Swap ended. Has changed:", hasChanged);
-    });
+      swapy.onSwapEnd(({ hasChanged }) => {
+        console.log("Swap ended. Has changed:", hasChanged);
+      });
 
-    return () => {
-      swapy.destroy();
-    };
+      return () => {
+        swapy.destroy();
+      };
+    }
   }, []);
 
   return (
