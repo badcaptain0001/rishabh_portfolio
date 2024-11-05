@@ -4,7 +4,7 @@ import Main from '@/components/home/Main'
 function page() {
   return (
     <div>
-      <Main />
+       <Main />
     </div>
   )
 }
